@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
-import 'ui/get_started.dart';
 
-void main(){
-  runApp(const MyApp());
-}
+import 'injection.dart';
+import 'presentation/app.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-@override
- Widget build(BuildContext context){
-return const MaterialApp(
-     title: 'Flood Prediction App',
-     home: GetStarted(),
-     debugShowCheckedModeBanner: false,
-);
- }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
+  runApp(const App());
 }
