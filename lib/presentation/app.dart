@@ -1,20 +1,26 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_application_1/application/auth/auth_cubit.dart';
+import 'package:flutter_application_1/injection.dart';
+import 'package:flutter_application_1/presentation/core/theme.dart';
 
 import 'router/app_router.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+
+  final _routerConfig = AppRouter().config();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: "App Title",
-      debugShowCheckedModeBanner: false,
-      theme: FlexThemeData.light(scheme: FlexScheme.wasabi),
-      darkTheme: FlexThemeData.dark(scheme: FlexScheme.wasabi),
-      themeMode: ThemeMode.system,
-      routerConfig: AppRouter().config(),
+    return BlocProvider(
+      create: (context) => getIt<AuthCubit>()..watch(),
+      child: MaterialApp.router(
+        title: "SL Flood Mate",
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme().config(),
+        routerConfig: _routerConfig,
+      ),
     );
   }
 }
