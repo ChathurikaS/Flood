@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/constants.dart';
 import 'package:flutter_application_1/presentation/widgets/text.dart';
 
 class WaterBubble extends StatelessWidget {
   final double waterLevel;
-
-  static const _maxRainfall = 12;
 
   const WaterBubble({super.key, required this.waterLevel});
 
@@ -17,7 +16,7 @@ class WaterBubble extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: waterLevel * (constraints.maxHeight / _maxRainfall),
+                height: waterLevel * (constraints.maxHeight / maxWaterLevel),
                 decoration: BoxDecoration(
                   color: Colors.blue,
                   borderRadius: BorderRadius.vertical(
@@ -33,7 +32,7 @@ class WaterBubble extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 0.5 * (constraints.maxHeight / _maxRainfall),
+              bottom: 0.5 * (constraints.maxHeight / maxWaterLevel),
               left: 0,
               right: 0,
               child: const Divider(
@@ -42,7 +41,7 @@ class WaterBubble extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 4 * (constraints.maxHeight / _maxRainfall),
+              bottom: 4 * (constraints.maxHeight / maxWaterLevel),
               left: 0,
               right: 0,
               child: const Divider(
@@ -51,7 +50,7 @@ class WaterBubble extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 8 * (constraints.maxHeight / _maxRainfall),
+              bottom: 8 * (constraints.maxHeight / maxWaterLevel),
               left: 0,
               right: 0,
               child: const Divider(
@@ -60,7 +59,7 @@ class WaterBubble extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 10 * (constraints.maxHeight / _maxRainfall),
+              bottom: 10 * (constraints.maxHeight / maxWaterLevel),
               left: 0,
               right: 0,
               child: const Divider(

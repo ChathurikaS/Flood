@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,38 +49,22 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDphMiZVN5aZoq-Zn8mj8Yh8g1dZr3NL4Y',
-    appId: '1:770739813196:web:661a34b92d6b28554c2de9',
-    messagingSenderId: '770739813196',
-    projectId: 'sl-flood-mate',
-    authDomain: 'sl-flood-mate.firebaseapp.com',
-    storageBucket: 'sl-flood-mate.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCWhCzXmL-7voqKtZMjFACSwBbduLVF8kE',
-    appId: '1:770739813196:android:f96c5dae702f4c434c2de9',
-    messagingSenderId: '770739813196',
-    projectId: 'sl-flood-mate',
-    storageBucket: 'sl-flood-mate.appspot.com',
+    apiKey: 'AIzaSyBebEZMOsQ8c9YyLl-8rYdnUbKBA_clw6Y',
+    appId: '1:900638531020:android:cf2c3988b36279879c5169',
+    messagingSenderId: '900638531020',
+    projectId: 'flood-9d37e',
+    databaseURL: 'https://flood-9d37e-default-rtdb.firebaseio.com',
+    storageBucket: 'flood-9d37e.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDX9Oou4shqUubjnE-Hvt8WNrZcy_LPGgo',
-    appId: '1:770739813196:ios:4e87d4a501029a884c2de9',
-    messagingSenderId: '770739813196',
-    projectId: 'sl-flood-mate',
-    storageBucket: 'sl-flood-mate.appspot.com',
-    iosBundleId: 'com.slfloodmate.slFloodMate',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDX9Oou4shqUubjnE-Hvt8WNrZcy_LPGgo',
-    appId: '1:770739813196:ios:cd30f815422a8c294c2de9',
-    messagingSenderId: '770739813196',
-    projectId: 'sl-flood-mate',
-    storageBucket: 'sl-flood-mate.appspot.com',
-    iosBundleId: 'com.slfloodmate.slFloodMate.RunnerTests',
+    apiKey: 'AIzaSyBlKODNUSy3Lj8snVRl7DPHZizp0tuA1LQ',
+    appId: '1:900638531020:ios:98b297f5640eb7479c5169',
+    messagingSenderId: '900638531020',
+    projectId: 'flood-9d37e',
+    databaseURL: 'https://flood-9d37e-default-rtdb.firebaseio.com',
+    storageBucket: 'flood-9d37e.appspot.com',
+    iosBundleId: 'com.example.flutterApplication1',
   );
 }

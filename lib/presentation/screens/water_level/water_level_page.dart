@@ -21,7 +21,7 @@ class WaterLevelPage extends StatelessWidget {
           bold: true,
         ),
       ),
-      body: const WaterBubble(waterLevel: 4),
+      body: const WaterBubble(waterLevel: 23),
     );
   }
 }

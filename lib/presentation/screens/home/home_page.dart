@@ -86,9 +86,7 @@ class HomePage extends StatelessWidget {
                         ),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: TextMedium(
-                            "Friday, 9 February",
-                          ),
+                          child: TextMedium("Friday, 9 February"),
                         ),
                         const VGap(gap: 20),
                         const Padding(

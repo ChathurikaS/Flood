@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter_application_1/infrastructure/services/weather/weather_api_client.dart';
 
@@ -13,4 +14,7 @@ abstract class InjectableModules {
 
   @lazySingleton
   WeatherApiClient get weatherApiClient => WeatherApiClient.create();
+
+  @lazySingleton
+  FirebaseDatabase get database => FirebaseDatabase.instance;
 }

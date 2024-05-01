@@ -1,0 +1,1 @@
+const maxWaterLevel = 12;
