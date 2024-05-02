@@ -20,9 +20,8 @@ class WaterLevelPage extends StatelessWidget {
       backgroundColor: theme.primaryColorLight,
       appBar: AppBar(
         backgroundColor: theme.primaryColor,
-        centerTitle: true,
         title: TextMedium(
-          city.name,
+          "Rainfall in ${city.name}",
           color: Colors.white,
           bold: true,
         ),
