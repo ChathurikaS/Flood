@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/presentation/router/app_router.dart';
 
 import 'package:flutter_application_1/presentation/widgets/space.dart';
 import 'package:flutter_application_1/presentation/widgets/text.dart';
@@ -10,23 +8,21 @@ class MeasurementCard extends StatelessWidget {
   final String title;
   final String value;
   final String image;
+  final Function()? onTap;
 
   const MeasurementCard({
     super.key,
     required this.title,
     required this.value,
     required this.image,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return InkWell(
-      onTap: () {
-        if (title == "Water Level") {
-          context.router.push(const WaterLevelRoute());
-        }
-      },
+      onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Padding(
         padding: const EdgeInsets.all(12),

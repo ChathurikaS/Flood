@@ -1,5 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/domain/city/city.dart';
+import 'package:flutter_application_1/presentation/screens/admin/create_city/create_city_page.dart';
+import 'package:flutter_application_1/presentation/screens/admin/home/home_page.dart';
+import 'package:flutter_application_1/presentation/screens/admin/rainfall/update_rainfall.dart';
 import 'package:flutter_application_1/presentation/screens/edit_profile/edit_profile_page.dart';
 import 'package:flutter_application_1/presentation/screens/home/home_page.dart';
 import 'package:flutter_application_1/presentation/screens/login/login_page.dart';
@@ -22,5 +26,8 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: WaterLevelRoute.page, path: "/water-level"),
         AutoRoute(page: ProfileRoute.page, path: "/profile"),
         AutoRoute(page: EditProfileRoute.page, path: "/edit-profile"),
+        AutoRoute(page: AdminHomeRoute.page, path: "/admin"),
+        AutoRoute(page: CreateCityRoute.page, path: "/create-city"),
+        AutoRoute(page: UpdateRainfallRoute.page, path: "/update-rainfall"),
       ];
 }

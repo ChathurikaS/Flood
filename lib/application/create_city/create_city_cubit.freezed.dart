@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'login_cubit.dart';
+part of 'create_city_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,13 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$LoginState {
+mixin _$CreateCityState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) user,
-    required TResult Function(Admin admin) admin,
+    required TResult Function() succeed,
     required TResult Function(Failure failure) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,8 +28,7 @@ mixin _$LoginState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? user,
-    TResult? Function(Admin admin)? admin,
+    TResult? Function()? succeed,
     TResult? Function(Failure failure)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,8 +36,7 @@ mixin _$LoginState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? user,
-    TResult Function(Admin admin)? admin,
+    TResult Function()? succeed,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) =>
@@ -48,8 +45,7 @@ mixin _$LoginState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_User value) user,
-    required TResult Function(_Admin value) admin,
+    required TResult Function(_Succeed value) succeed,
     required TResult Function(_Failed value) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -57,8 +53,7 @@ mixin _$LoginState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_User value)? user,
-    TResult? Function(_Admin value)? admin,
+    TResult? Function(_Succeed value)? succeed,
     TResult? Function(_Failed value)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -66,8 +61,7 @@ mixin _$LoginState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_User value)? user,
-    TResult Function(_Admin value)? admin,
+    TResult Function(_Succeed value)? succeed,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) =>
@@ -75,16 +69,16 @@ mixin _$LoginState {
 }
 
 /// @nodoc
-abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res, LoginState>;
+abstract class $CreateCityStateCopyWith<$Res> {
+  factory $CreateCityStateCopyWith(
+          CreateCityState value, $Res Function(CreateCityState) then) =
+      _$CreateCityStateCopyWithImpl<$Res, CreateCityState>;
 }
 
 /// @nodoc
-class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
-    implements $LoginStateCopyWith<$Res> {
-  _$LoginStateCopyWithImpl(this._value, this._then);
+class _$CreateCityStateCopyWithImpl<$Res, $Val extends CreateCityState>
+    implements $CreateCityStateCopyWith<$Res> {
+  _$CreateCityStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -101,7 +95,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$CreateCityStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -115,7 +109,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'LoginState.initial()';
+    return 'CreateCityState.initial()';
   }
 
   @override
@@ -132,8 +126,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) user,
-    required TResult Function(Admin admin) admin,
+    required TResult Function() succeed,
     required TResult Function(Failure failure) failed,
   }) {
     return initial();
@@ -144,8 +137,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? user,
-    TResult? Function(Admin admin)? admin,
+    TResult? Function()? succeed,
     TResult? Function(Failure failure)? failed,
   }) {
     return initial?.call();
@@ -156,8 +148,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? user,
-    TResult Function(Admin admin)? admin,
+    TResult Function()? succeed,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
@@ -172,8 +163,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_User value) user,
-    required TResult Function(_Admin value) admin,
+    required TResult Function(_Succeed value) succeed,
     required TResult Function(_Failed value) failed,
   }) {
     return initial(this);
@@ -184,8 +174,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_User value)? user,
-    TResult? Function(_Admin value)? admin,
+    TResult? Function(_Succeed value)? succeed,
     TResult? Function(_Failed value)? failed,
   }) {
     return initial?.call(this);
@@ -196,8 +185,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_User value)? user,
-    TResult Function(_Admin value)? admin,
+    TResult Function(_Succeed value)? succeed,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -208,7 +196,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements LoginState {
+abstract class _Initial implements CreateCityState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -221,7 +209,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$CreateCityStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -235,7 +223,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'LoginState.loading()';
+    return 'CreateCityState.loading()';
   }
 
   @override
@@ -252,8 +240,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) user,
-    required TResult Function(Admin admin) admin,
+    required TResult Function() succeed,
     required TResult Function(Failure failure) failed,
   }) {
     return loading();
@@ -264,8 +251,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? user,
-    TResult? Function(Admin admin)? admin,
+    TResult? Function()? succeed,
     TResult? Function(Failure failure)? failed,
   }) {
     return loading?.call();
@@ -276,8 +262,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? user,
-    TResult Function(Admin admin)? admin,
+    TResult Function()? succeed,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
@@ -292,8 +277,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_User value) user,
-    required TResult Function(_Admin value) admin,
+    required TResult Function(_Succeed value) succeed,
     required TResult Function(_Failed value) failed,
   }) {
     return loading(this);
@@ -304,8 +288,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_User value)? user,
-    TResult? Function(_Admin value)? admin,
+    TResult? Function(_Succeed value)? succeed,
     TResult? Function(_Failed value)? failed,
   }) {
     return loading?.call(this);
@@ -316,8 +299,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_User value)? user,
-    TResult Function(_Admin value)? admin,
+    TResult Function(_Succeed value)? succeed,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -328,90 +310,54 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements LoginState {
+abstract class _Loading implements CreateCityState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$UserImplCopyWith<$Res> {
-  factory _$$UserImplCopyWith(
-          _$UserImpl value, $Res Function(_$UserImpl) then) =
-      __$$UserImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({User user});
-
-  $UserCopyWith<$Res> get user;
+abstract class _$$SucceedImplCopyWith<$Res> {
+  factory _$$SucceedImplCopyWith(
+          _$SucceedImpl value, $Res Function(_$SucceedImpl) then) =
+      __$$SucceedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UserImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$UserImpl>
-    implements _$$UserImplCopyWith<$Res> {
-  __$$UserImplCopyWithImpl(_$UserImpl _value, $Res Function(_$UserImpl) _then)
+class __$$SucceedImplCopyWithImpl<$Res>
+    extends _$CreateCityStateCopyWithImpl<$Res, _$SucceedImpl>
+    implements _$$SucceedImplCopyWith<$Res> {
+  __$$SucceedImplCopyWithImpl(
+      _$SucceedImpl _value, $Res Function(_$SucceedImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$UserImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
 }
 
 /// @nodoc
 
-class _$UserImpl implements _User {
-  const _$UserImpl({required this.user});
-
-  @override
-  final User user;
+class _$SucceedImpl implements _Succeed {
+  const _$SucceedImpl();
 
   @override
   String toString() {
-    return 'LoginState.user(user: $user)';
+    return 'CreateCityState.succeed()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserImpl &&
-            (identical(other.user, user) || other.user == user));
+        (other.runtimeType == runtimeType && other is _$SucceedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
-      __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) user,
-    required TResult Function(Admin admin) admin,
+    required TResult Function() succeed,
     required TResult Function(Failure failure) failed,
   }) {
-    return user(this.user);
+    return succeed();
   }
 
   @override
@@ -419,11 +365,10 @@ class _$UserImpl implements _User {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? user,
-    TResult? Function(Admin admin)? admin,
+    TResult? Function()? succeed,
     TResult? Function(Failure failure)? failed,
   }) {
-    return user?.call(this.user);
+    return succeed?.call();
   }
 
   @override
@@ -431,13 +376,12 @@ class _$UserImpl implements _User {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? user,
-    TResult Function(Admin admin)? admin,
+    TResult Function()? succeed,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
-    if (user != null) {
-      return user(this.user);
+    if (succeed != null) {
+      return succeed();
     }
     return orElse();
   }
@@ -447,11 +391,10 @@ class _$UserImpl implements _User {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_User value) user,
-    required TResult Function(_Admin value) admin,
+    required TResult Function(_Succeed value) succeed,
     required TResult Function(_Failed value) failed,
   }) {
-    return user(this);
+    return succeed(this);
   }
 
   @override
@@ -459,11 +402,10 @@ class _$UserImpl implements _User {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_User value)? user,
-    TResult? Function(_Admin value)? admin,
+    TResult? Function(_Succeed value)? succeed,
     TResult? Function(_Failed value)? failed,
   }) {
-    return user?.call(this);
+    return succeed?.call(this);
   }
 
   @override
@@ -471,186 +413,19 @@ class _$UserImpl implements _User {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_User value)? user,
-    TResult Function(_Admin value)? admin,
+    TResult Function(_Succeed value)? succeed,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
-    if (user != null) {
-      return user(this);
+    if (succeed != null) {
+      return succeed(this);
     }
     return orElse();
   }
 }
 
-abstract class _User implements LoginState {
-  const factory _User({required final User user}) = _$UserImpl;
-
-  User get user;
-  @JsonKey(ignore: true)
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$AdminImplCopyWith<$Res> {
-  factory _$$AdminImplCopyWith(
-          _$AdminImpl value, $Res Function(_$AdminImpl) then) =
-      __$$AdminImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Admin admin});
-
-  $AdminCopyWith<$Res> get admin;
-}
-
-/// @nodoc
-class __$$AdminImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$AdminImpl>
-    implements _$$AdminImplCopyWith<$Res> {
-  __$$AdminImplCopyWithImpl(
-      _$AdminImpl _value, $Res Function(_$AdminImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? admin = null,
-  }) {
-    return _then(_$AdminImpl(
-      admin: null == admin
-          ? _value.admin
-          : admin // ignore: cast_nullable_to_non_nullable
-              as Admin,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AdminCopyWith<$Res> get admin {
-    return $AdminCopyWith<$Res>(_value.admin, (value) {
-      return _then(_value.copyWith(admin: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$AdminImpl implements _Admin {
-  const _$AdminImpl({required this.admin});
-
-  @override
-  final Admin admin;
-
-  @override
-  String toString() {
-    return 'LoginState.admin(admin: $admin)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AdminImpl &&
-            (identical(other.admin, admin) || other.admin == admin));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, admin);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AdminImplCopyWith<_$AdminImpl> get copyWith =>
-      __$$AdminImplCopyWithImpl<_$AdminImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(User user) user,
-    required TResult Function(Admin admin) admin,
-    required TResult Function(Failure failure) failed,
-  }) {
-    return admin(this.admin);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(User user)? user,
-    TResult? Function(Admin admin)? admin,
-    TResult? Function(Failure failure)? failed,
-  }) {
-    return admin?.call(this.admin);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(User user)? user,
-    TResult Function(Admin admin)? admin,
-    TResult Function(Failure failure)? failed,
-    required TResult orElse(),
-  }) {
-    if (admin != null) {
-      return admin(this.admin);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_User value) user,
-    required TResult Function(_Admin value) admin,
-    required TResult Function(_Failed value) failed,
-  }) {
-    return admin(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_User value)? user,
-    TResult? Function(_Admin value)? admin,
-    TResult? Function(_Failed value)? failed,
-  }) {
-    return admin?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_User value)? user,
-    TResult Function(_Admin value)? admin,
-    TResult Function(_Failed value)? failed,
-    required TResult orElse(),
-  }) {
-    if (admin != null) {
-      return admin(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Admin implements LoginState {
-  const factory _Admin({required final Admin admin}) = _$AdminImpl;
-
-  Admin get admin;
-  @JsonKey(ignore: true)
-  _$$AdminImplCopyWith<_$AdminImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _Succeed implements CreateCityState {
+  const factory _Succeed() = _$SucceedImpl;
 }
 
 /// @nodoc
@@ -666,7 +441,7 @@ abstract class _$$FailedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailedImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$FailedImpl>
+    extends _$CreateCityStateCopyWithImpl<$Res, _$FailedImpl>
     implements _$$FailedImplCopyWith<$Res> {
   __$$FailedImplCopyWithImpl(
       _$FailedImpl _value, $Res Function(_$FailedImpl) _then)
@@ -678,7 +453,7 @@ class __$$FailedImplCopyWithImpl<$Res>
     Object? failure = null,
   }) {
     return _then(_$FailedImpl(
-      failure: null == failure
+      null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure,
@@ -697,14 +472,14 @@ class __$$FailedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailedImpl implements _Failed {
-  const _$FailedImpl({required this.failure});
+  const _$FailedImpl(this.failure);
 
   @override
   final Failure failure;
 
   @override
   String toString() {
-    return 'LoginState.failed(failure: $failure)';
+    return 'CreateCityState.failed(failure: $failure)';
   }
 
   @override
@@ -729,8 +504,7 @@ class _$FailedImpl implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) user,
-    required TResult Function(Admin admin) admin,
+    required TResult Function() succeed,
     required TResult Function(Failure failure) failed,
   }) {
     return failed(failure);
@@ -741,8 +515,7 @@ class _$FailedImpl implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? user,
-    TResult? Function(Admin admin)? admin,
+    TResult? Function()? succeed,
     TResult? Function(Failure failure)? failed,
   }) {
     return failed?.call(failure);
@@ -753,8 +526,7 @@ class _$FailedImpl implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? user,
-    TResult Function(Admin admin)? admin,
+    TResult Function()? succeed,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
@@ -769,8 +541,7 @@ class _$FailedImpl implements _Failed {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_User value) user,
-    required TResult Function(_Admin value) admin,
+    required TResult Function(_Succeed value) succeed,
     required TResult Function(_Failed value) failed,
   }) {
     return failed(this);
@@ -781,8 +552,7 @@ class _$FailedImpl implements _Failed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_User value)? user,
-    TResult? Function(_Admin value)? admin,
+    TResult? Function(_Succeed value)? succeed,
     TResult? Function(_Failed value)? failed,
   }) {
     return failed?.call(this);
@@ -793,8 +563,7 @@ class _$FailedImpl implements _Failed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_User value)? user,
-    TResult Function(_Admin value)? admin,
+    TResult Function(_Succeed value)? succeed,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -805,8 +574,8 @@ class _$FailedImpl implements _Failed {
   }
 }
 
-abstract class _Failed implements LoginState {
-  const factory _Failed({required final Failure failure}) = _$FailedImpl;
+abstract class _Failed implements CreateCityState {
+  const factory _Failed(final Failure failure) = _$FailedImpl;
 
   Failure get failure;
   @JsonKey(ignore: true)

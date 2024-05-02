@@ -1,21 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/core/extensions/dartz_x.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/application/auth/auth_cubit.dart';
 import 'package:flutter_application_1/application/weather/weather_cubit.dart';
+import 'package:flutter_application_1/core/extensions/dartz_x.dart';
 import 'package:flutter_application_1/injection.dart';
 import 'package:flutter_application_1/presentation/core/theme.dart';
 import 'package:flutter_application_1/presentation/router/app_router.dart';
 import 'package:flutter_application_1/presentation/screens/home/widgets/forecast_row.dart';
 import 'package:flutter_application_1/presentation/screens/home/widgets/weather_row.dart';
 import 'package:flutter_application_1/presentation/screens/home/widgets/wether_card.dart';
+import 'package:flutter_application_1/presentation/widgets/admin_dialog.dart';
 import 'package:flutter_application_1/presentation/widgets/space.dart';
 import 'package:flutter_application_1/presentation/widgets/text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class AdminHomePage extends StatelessWidget {
+  const AdminHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,20 @@ class HomePage extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         if (state.city.isNone()) {
-          return const Scaffold(
-            body: SizedBox(),
-          );
+          return Scaffold(
+              body: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const TextRegular("No cities found, please add a city first."),
+                const VGap(gap: 20),
+                TextButton(
+                    onPressed: () => context.router.push(CreateCityRoute()),
+                    child: const TextRegular("Add City")),
+              ],
+            ),
+          ));
         }
         final city = state.city.getOrCrash();
         return Builder(builder: (context) {
@@ -33,10 +45,8 @@ class HomePage extends StatelessWidget {
             create: (context) => getIt<WeatherCubit>()..loadWeather(city.name),
             child: BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
-                if (state.user.isSome()) {
-                  context
-                      .read<WeatherCubit>()
-                      .loadWeather(state.user.getOrCrash().city);
+                if (state.city.isSome()) {
+                  context.read<WeatherCubit>().loadWeather(city.name);
                 }
               },
               child: Scaffold(
@@ -51,15 +61,10 @@ class HomePage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
                             children: [
-                              InkWell(
-                                onTap: () =>
-                                    context.router.push(const ProfileRoute()),
-                                child: Image.asset(
-                                  "assets/images/profile.png",
-                                  width: 60,
-                                  height: 60,
-                                  fit: BoxFit.cover,
-                                ),
+                              TextButton.icon(
+                                onPressed: () => showAdminDialog(context, city),
+                                icon: const Icon(Icons.person_2_rounded),
+                                label: const TextMedium("Admin"),
                               ),
                               const Spacer(),
                               TextButton.icon(

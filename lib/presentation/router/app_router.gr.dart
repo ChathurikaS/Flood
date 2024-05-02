@@ -15,6 +15,20 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AdminHomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AdminHomePage(),
+      );
+    },
+    CreateCityRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateCityRouteArgs>(
+          orElse: () => const CreateCityRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CreateCityPage(key: args.key),
+      );
+    },
     EditProfileRoute.name: (routeData) {
       final args = routeData.argsAs<EditProfileRouteArgs>(
           orElse: () => const EditProfileRouteArgs());
@@ -67,13 +81,70 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    WaterLevelRoute.name: (routeData) {
+    UpdateRainfallRoute.name: (routeData) {
+      final args = routeData.argsAs<UpdateRainfallRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const WaterLevelPage(),
+        child: UpdateRainfallPage(
+          key: args.key,
+          city: args.city,
+        ),
+      );
+    },
+    WaterLevelRoute.name: (routeData) {
+      final args = routeData.argsAs<WaterLevelRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WaterLevelPage(
+          key: args.key,
+          city: args.city,
+        ),
       );
     },
   };
+}
+
+/// generated route for
+/// [AdminHomePage]
+class AdminHomeRoute extends PageRouteInfo<void> {
+  const AdminHomeRoute({List<PageRouteInfo>? children})
+      : super(
+          AdminHomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminHomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CreateCityPage]
+class CreateCityRoute extends PageRouteInfo<CreateCityRouteArgs> {
+  CreateCityRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CreateCityRoute.name,
+          args: CreateCityRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateCityRoute';
+
+  static const PageInfo<CreateCityRouteArgs> page =
+      PageInfo<CreateCityRouteArgs>(name);
+}
+
+class CreateCityRouteArgs {
+  const CreateCityRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CreateCityRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -243,15 +314,77 @@ class SelectCityRouteArgs {
 }
 
 /// generated route for
+/// [UpdateRainfallPage]
+class UpdateRainfallRoute extends PageRouteInfo<UpdateRainfallRouteArgs> {
+  UpdateRainfallRoute({
+    Key? key,
+    required City city,
+    List<PageRouteInfo>? children,
+  }) : super(
+          UpdateRainfallRoute.name,
+          args: UpdateRainfallRouteArgs(
+            key: key,
+            city: city,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'UpdateRainfallRoute';
+
+  static const PageInfo<UpdateRainfallRouteArgs> page =
+      PageInfo<UpdateRainfallRouteArgs>(name);
+}
+
+class UpdateRainfallRouteArgs {
+  const UpdateRainfallRouteArgs({
+    this.key,
+    required this.city,
+  });
+
+  final Key? key;
+
+  final City city;
+
+  @override
+  String toString() {
+    return 'UpdateRainfallRouteArgs{key: $key, city: $city}';
+  }
+}
+
+/// generated route for
 /// [WaterLevelPage]
-class WaterLevelRoute extends PageRouteInfo<void> {
-  const WaterLevelRoute({List<PageRouteInfo>? children})
-      : super(
+class WaterLevelRoute extends PageRouteInfo<WaterLevelRouteArgs> {
+  WaterLevelRoute({
+    Key? key,
+    required City city,
+    List<PageRouteInfo>? children,
+  }) : super(
           WaterLevelRoute.name,
+          args: WaterLevelRouteArgs(
+            key: key,
+            city: city,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'WaterLevelRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<WaterLevelRouteArgs> page =
+      PageInfo<WaterLevelRouteArgs>(name);
+}
+
+class WaterLevelRouteArgs {
+  const WaterLevelRouteArgs({
+    this.key,
+    required this.city,
+  });
+
+  final Key? key;
+
+  final City city;
+
+  @override
+  String toString() {
+    return 'WaterLevelRouteArgs{key: $key, city: $city}';
+  }
 }

@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthState {
   bool get isLoading => throw _privateConstructorUsedError;
   Option<User> get user => throw _privateConstructorUsedError;
+  Option<Admin> get admin => throw _privateConstructorUsedError;
+  Option<City> get city => throw _privateConstructorUsedError;
   Option<Failure> get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +32,12 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({bool isLoading, Option<User> user, Option<Failure> failure});
+  $Res call(
+      {bool isLoading,
+      Option<User> user,
+      Option<Admin> admin,
+      Option<City> city,
+      Option<Failure> failure});
 }
 
 /// @nodoc
@@ -48,6 +55,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? isLoading = null,
     Object? user = null,
+    Object? admin = null,
+    Object? city = null,
     Object? failure = null,
   }) {
     return _then(_value.copyWith(
@@ -59,6 +68,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as Option<User>,
+      admin: null == admin
+          ? _value.admin
+          : admin // ignore: cast_nullable_to_non_nullable
+              as Option<Admin>,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as Option<City>,
       failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -75,7 +92,12 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       __$$AuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, Option<User> user, Option<Failure> failure});
+  $Res call(
+      {bool isLoading,
+      Option<User> user,
+      Option<Admin> admin,
+      Option<City> city,
+      Option<Failure> failure});
 }
 
 /// @nodoc
@@ -91,6 +113,8 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? user = null,
+    Object? admin = null,
+    Object? city = null,
     Object? failure = null,
   }) {
     return _then(_$AuthStateImpl(
@@ -102,6 +126,14 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as Option<User>,
+      admin: null == admin
+          ? _value.admin
+          : admin // ignore: cast_nullable_to_non_nullable
+              as Option<Admin>,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as Option<City>,
       failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -114,18 +146,26 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 
 class _$AuthStateImpl implements _AuthState {
   const _$AuthStateImpl(
-      {required this.isLoading, required this.user, required this.failure});
+      {required this.isLoading,
+      required this.user,
+      required this.admin,
+      required this.city,
+      required this.failure});
 
   @override
   final bool isLoading;
   @override
   final Option<User> user;
   @override
+  final Option<Admin> admin;
+  @override
+  final Option<City> city;
+  @override
   final Option<Failure> failure;
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, user: $user, failure: $failure)';
+    return 'AuthState(isLoading: $isLoading, user: $user, admin: $admin, city: $city, failure: $failure)';
   }
 
   @override
@@ -136,11 +176,14 @@ class _$AuthStateImpl implements _AuthState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.user, user) || other.user == user) &&
+            (identical(other.admin, admin) || other.admin == admin) &&
+            (identical(other.city, city) || other.city == city) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, user, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, user, admin, city, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -153,12 +196,18 @@ abstract class _AuthState implements AuthState {
   const factory _AuthState(
       {required final bool isLoading,
       required final Option<User> user,
+      required final Option<Admin> admin,
+      required final Option<City> city,
       required final Option<Failure> failure}) = _$AuthStateImpl;
 
   @override
   bool get isLoading;
   @override
   Option<User> get user;
+  @override
+  Option<Admin> get admin;
+  @override
+  Option<City> get city;
   @override
   Option<Failure> get failure;
   @override

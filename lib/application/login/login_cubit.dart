@@ -1,3 +1,5 @@
+import 'package:flutter_application_1/core/secrets.dart';
+import 'package:flutter_application_1/domain/admin/admin.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -34,6 +36,12 @@ class LoginCubit extends Cubit<LoginState> {
       return;
     }
 
+    if (email == Secrets().adminEmail && password == Secrets().adminPassword) {
+      await Future.delayed(const Duration(seconds: 1));
+      emit(LoginState.admin(admin: Admin(email: email, city: "")));
+      return;
+    }
+
     final failureOrUid = await _authFacade.signInWithEmailAndPassword(
         email: email, password: password);
 
@@ -49,6 +57,6 @@ class LoginCubit extends Cubit<LoginState> {
       return;
     }
 
-    emit(LoginState.succeed(user: failureOrUser.getOrCrash()));
+    emit(LoginState.user(user: failureOrUser.getOrCrash()));
   }
 }

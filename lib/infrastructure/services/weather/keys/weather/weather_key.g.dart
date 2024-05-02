@@ -8,7 +8,7 @@ part of 'weather_key.dart';
 
 _$WeatherKeyImpl _$$WeatherKeyImplFromJson(Map<String, dynamic> json) =>
     _$WeatherKeyImpl(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       main: json['main'] as String,
       description: json['description'] as String,
       icon: json['icon'] as String,

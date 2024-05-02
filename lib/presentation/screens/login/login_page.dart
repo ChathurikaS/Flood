@@ -33,6 +33,10 @@ class LoginPage extends StatelessWidget {
                 context.router.replaceAll([const HomeRoute()]);
                 return;
               }
+              if (state.admin.isSome()) {
+                context.router.replaceAll([const AdminHomeRoute()]);
+                return;
+              }
             },
           ),
           BlocListener<LoginCubit, LoginState>(
@@ -42,6 +46,7 @@ class LoginPage extends StatelessWidget {
                   showFailedSnackbar(
                       context: context, message: failure.message);
                 },
+                admin: (admin) => context.read<AuthCubit>().setAdmin(admin),
                 orElse: () {},
               );
             },

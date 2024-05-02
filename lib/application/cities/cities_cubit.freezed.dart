@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'select_city_cubit.dart';
+part of 'cities_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,53 +15,47 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SelectCityState {
+mixin _$CitiesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() succeed,
+    required TResult Function(List<City> cities) loaded,
     required TResult Function(Failure failure) failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? succeed,
+    TResult? Function(List<City> cities)? loaded,
     TResult? Function(Failure failure)? failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? succeed,
+    TResult Function(List<City> cities)? loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Succeed value) succeed,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failed value) failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Succeed value)? succeed,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failed value)? failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Succeed value)? succeed,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) =>
@@ -69,135 +63,21 @@ mixin _$SelectCityState {
 }
 
 /// @nodoc
-abstract class $SelectCityStateCopyWith<$Res> {
-  factory $SelectCityStateCopyWith(
-          SelectCityState value, $Res Function(SelectCityState) then) =
-      _$SelectCityStateCopyWithImpl<$Res, SelectCityState>;
+abstract class $CitiesStateCopyWith<$Res> {
+  factory $CitiesStateCopyWith(
+          CitiesState value, $Res Function(CitiesState) then) =
+      _$CitiesStateCopyWithImpl<$Res, CitiesState>;
 }
 
 /// @nodoc
-class _$SelectCityStateCopyWithImpl<$Res, $Val extends SelectCityState>
-    implements $SelectCityStateCopyWith<$Res> {
-  _$SelectCityStateCopyWithImpl(this._value, this._then);
+class _$CitiesStateCopyWithImpl<$Res, $Val extends CitiesState>
+    implements $CitiesStateCopyWith<$Res> {
+  _$CitiesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SelectCityStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'SelectCityState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() succeed,
-    required TResult Function(Failure failure) failed,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? succeed,
-    TResult? Function(Failure failure)? failed,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? succeed,
-    TResult Function(Failure failure)? failed,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Succeed value) succeed,
-    required TResult Function(_Failed value) failed,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Succeed value)? succeed,
-    TResult? Function(_Failed value)? failed,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Succeed value)? succeed,
-    TResult Function(_Failed value)? failed,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements SelectCityState {
-  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -209,7 +89,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SelectCityStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$CitiesStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -223,7 +103,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'SelectCityState.loading()';
+    return 'CitiesState.loading()';
   }
 
   @override
@@ -238,9 +118,8 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() succeed,
+    required TResult Function(List<City> cities) loaded,
     required TResult Function(Failure failure) failed,
   }) {
     return loading();
@@ -249,9 +128,8 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? succeed,
+    TResult? Function(List<City> cities)? loaded,
     TResult? Function(Failure failure)? failed,
   }) {
     return loading?.call();
@@ -260,9 +138,8 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? succeed,
+    TResult Function(List<City> cities)? loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
@@ -275,9 +152,8 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Succeed value) succeed,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failed value) failed,
   }) {
     return loading(this);
@@ -286,9 +162,8 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Succeed value)? succeed,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failed value)? failed,
   }) {
     return loading?.call(this);
@@ -297,9 +172,8 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Succeed value)? succeed,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -310,78 +184,107 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements SelectCityState {
+abstract class _Loading implements CitiesState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$SucceedImplCopyWith<$Res> {
-  factory _$$SucceedImplCopyWith(
-          _$SucceedImpl value, $Res Function(_$SucceedImpl) then) =
-      __$$SucceedImplCopyWithImpl<$Res>;
+abstract class _$$LoadedImplCopyWith<$Res> {
+  factory _$$LoadedImplCopyWith(
+          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
+      __$$LoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<City> cities});
 }
 
 /// @nodoc
-class __$$SucceedImplCopyWithImpl<$Res>
-    extends _$SelectCityStateCopyWithImpl<$Res, _$SucceedImpl>
-    implements _$$SucceedImplCopyWith<$Res> {
-  __$$SucceedImplCopyWithImpl(
-      _$SucceedImpl _value, $Res Function(_$SucceedImpl) _then)
+class __$$LoadedImplCopyWithImpl<$Res>
+    extends _$CitiesStateCopyWithImpl<$Res, _$LoadedImpl>
+    implements _$$LoadedImplCopyWith<$Res> {
+  __$$LoadedImplCopyWithImpl(
+      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cities = null,
+  }) {
+    return _then(_$LoadedImpl(
+      null == cities
+          ? _value._cities
+          : cities // ignore: cast_nullable_to_non_nullable
+              as List<City>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$SucceedImpl implements _Succeed {
-  const _$SucceedImpl();
+class _$LoadedImpl implements _Loaded {
+  const _$LoadedImpl(final List<City> cities) : _cities = cities;
+
+  final List<City> _cities;
+  @override
+  List<City> get cities {
+    if (_cities is EqualUnmodifiableListView) return _cities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cities);
+  }
 
   @override
   String toString() {
-    return 'SelectCityState.succeed()';
+    return 'CitiesState.loaded(cities: $cities)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SucceedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedImpl &&
+            const DeepCollectionEquality().equals(other._cities, _cities));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_cities));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() succeed,
+    required TResult Function(List<City> cities) loaded,
     required TResult Function(Failure failure) failed,
   }) {
-    return succeed();
+    return loaded(cities);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? succeed,
+    TResult? Function(List<City> cities)? loaded,
     TResult? Function(Failure failure)? failed,
   }) {
-    return succeed?.call();
+    return loaded?.call(cities);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? succeed,
+    TResult Function(List<City> cities)? loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
-    if (succeed != null) {
-      return succeed();
+    if (loaded != null) {
+      return loaded(cities);
     }
     return orElse();
   }
@@ -389,43 +292,45 @@ class _$SucceedImpl implements _Succeed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Succeed value) succeed,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failed value) failed,
   }) {
-    return succeed(this);
+    return loaded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Succeed value)? succeed,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failed value)? failed,
   }) {
-    return succeed?.call(this);
+    return loaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Succeed value)? succeed,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
-    if (succeed != null) {
-      return succeed(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
-abstract class _Succeed implements SelectCityState {
-  const factory _Succeed() = _$SucceedImpl;
+abstract class _Loaded implements CitiesState {
+  const factory _Loaded(final List<City> cities) = _$LoadedImpl;
+
+  List<City> get cities;
+  @JsonKey(ignore: true)
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -441,7 +346,7 @@ abstract class _$$FailedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailedImplCopyWithImpl<$Res>
-    extends _$SelectCityStateCopyWithImpl<$Res, _$FailedImpl>
+    extends _$CitiesStateCopyWithImpl<$Res, _$FailedImpl>
     implements _$$FailedImplCopyWith<$Res> {
   __$$FailedImplCopyWithImpl(
       _$FailedImpl _value, $Res Function(_$FailedImpl) _then)
@@ -479,7 +384,7 @@ class _$FailedImpl implements _Failed {
 
   @override
   String toString() {
-    return 'SelectCityState.failed(failure: $failure)';
+    return 'CitiesState.failed(failure: $failure)';
   }
 
   @override
@@ -502,9 +407,8 @@ class _$FailedImpl implements _Failed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() succeed,
+    required TResult Function(List<City> cities) loaded,
     required TResult Function(Failure failure) failed,
   }) {
     return failed(failure);
@@ -513,9 +417,8 @@ class _$FailedImpl implements _Failed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? succeed,
+    TResult? Function(List<City> cities)? loaded,
     TResult? Function(Failure failure)? failed,
   }) {
     return failed?.call(failure);
@@ -524,9 +427,8 @@ class _$FailedImpl implements _Failed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? succeed,
+    TResult Function(List<City> cities)? loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
@@ -539,9 +441,8 @@ class _$FailedImpl implements _Failed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Succeed value) succeed,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_Failed value) failed,
   }) {
     return failed(this);
@@ -550,9 +451,8 @@ class _$FailedImpl implements _Failed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Succeed value)? succeed,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Failed value)? failed,
   }) {
     return failed?.call(this);
@@ -561,9 +461,8 @@ class _$FailedImpl implements _Failed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Succeed value)? succeed,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -574,7 +473,7 @@ class _$FailedImpl implements _Failed {
   }
 }
 
-abstract class _Failed implements SelectCityState {
+abstract class _Failed implements CitiesState {
   const factory _Failed(final Failure failure) = _$FailedImpl;
 
   Failure get failure;

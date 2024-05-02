@@ -16,7 +16,10 @@ class WeatherService {
   Future<Either<Failure, Weather>> getWeather(String city) async {
     try {
       final weather = await _client.weather.get('&q=$city,LK&units=metric');
-      return right(WeatherDto.fromJson(weather.data).toDomain());
+      final domain = WeatherDto.fromJson(weather.data).toDomain();
+
+      return right(domain.copyWith(
+          icon: "${domain.icon.substring(0, domain.icon.length - 1)}d"));
     } catch (e) {
       return left(const Failure(message: 'Failed to get weather data'));
     }

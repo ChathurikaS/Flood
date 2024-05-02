@@ -8,7 +8,7 @@ part of 'forecast_dto.dart';
 
 _$ForecastDtoImpl _$$ForecastDtoImplFromJson(Map<String, dynamic> json) =>
     _$ForecastDtoImpl(
-      date: json['dt'] as int,
+      date: (json['dt'] as num).toInt(),
       weather: (json['weather'] as List<dynamic>)
           .map((e) => WeatherKey.fromJson(e as Map<String, dynamic>))
           .toList(),
