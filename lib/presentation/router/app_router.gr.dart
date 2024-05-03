@@ -71,6 +71,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: RegisterPage(key: args.key),
       );
     },
+    RegisterSensorRoute.name: (routeData) {
+      final args = routeData.argsAs<RegisterSensorRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RegisterSensorPage(
+          key: args.key,
+          city: args.city,
+        ),
+      );
+    },
     SelectCityRoute.name: (routeData) {
       final args = routeData.argsAs<SelectCityRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -272,6 +282,44 @@ class RegisterRouteArgs {
   @override
   String toString() {
     return 'RegisterRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [RegisterSensorPage]
+class RegisterSensorRoute extends PageRouteInfo<RegisterSensorRouteArgs> {
+  RegisterSensorRoute({
+    Key? key,
+    required City city,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RegisterSensorRoute.name,
+          args: RegisterSensorRouteArgs(
+            key: key,
+            city: city,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RegisterSensorRoute';
+
+  static const PageInfo<RegisterSensorRouteArgs> page =
+      PageInfo<RegisterSensorRouteArgs>(name);
+}
+
+class RegisterSensorRouteArgs {
+  const RegisterSensorRouteArgs({
+    this.key,
+    required this.city,
+  });
+
+  final Key? key;
+
+  final City city;
+
+  @override
+  String toString() {
+    return 'RegisterSensorRouteArgs{key: $key, city: $city}';
   }
 }
 

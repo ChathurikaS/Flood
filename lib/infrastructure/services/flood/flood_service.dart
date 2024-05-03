@@ -11,6 +11,18 @@ class FloodService {
     yield* _database
         .ref("waterLevel/$cityId")
         .onValue
-        .map((event) => event.snapshot.value as int);
+        .map((event) => _processed(event.snapshot.value as int));
+  }
+
+  int _processed(int value) {
+    const sensorMax = 210;
+    const filled = 140;
+    int reversed = 0;
+    if (value > sensorMax) {
+      reversed = 0;
+    } else {
+      reversed = sensorMax - value;
+    }
+    return reversed * filled ~/ 100;
   }
 }

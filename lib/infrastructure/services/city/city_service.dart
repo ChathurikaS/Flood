@@ -17,7 +17,8 @@ class CityService {
   Future<Either<Failure, None>> create(String name) async {
     try {
       final doc = _citiesRef.doc();
-      await doc.set(City(id: doc.id, name: name, rainfall: 0).toJson());
+      await doc
+          .set(City(id: doc.id, name: name, rainfall: 0, sensor: "").toJson());
       return const Right(None());
     } catch (e) {
       return const Left(Failure(message: "Failed to create city"));

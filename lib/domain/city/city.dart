@@ -7,6 +7,7 @@ abstract class City with _$City {
   const factory City(
       {required String id,
       required String name,
-      required int rainfall}) = _City;
+      required int rainfall,
+      required String sensor}) = _City;
   factory City.fromJson(Map<String, Object?> json) => _$CityFromJson(json);
 }

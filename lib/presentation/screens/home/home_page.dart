@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/extensions/dartz_x.dart';
+import 'package:flutter_application_1/presentation/widgets/flood_level.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/application/auth/auth_cubit.dart';
 import 'package:flutter_application_1/application/weather/weather_cubit.dart';
@@ -100,6 +101,8 @@ class HomePage extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: WetherCard(),
                         ),
+                        const VGap(gap: 30),
+                        FloodLevel(city: city),
                         const VGap(gap: 30),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),

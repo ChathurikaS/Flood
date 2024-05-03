@@ -23,6 +23,7 @@ mixin _$City {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get rainfall => throw _privateConstructorUsedError;
+  String get sensor => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $CityCopyWith<$Res> {
   factory $CityCopyWith(City value, $Res Function(City) then) =
       _$CityCopyWithImpl<$Res, City>;
   @useResult
-  $Res call({String id, String name, int rainfall});
+  $Res call({String id, String name, int rainfall, String sensor});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$CityCopyWithImpl<$Res, $Val extends City>
     Object? id = null,
     Object? name = null,
     Object? rainfall = null,
+    Object? sensor = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -67,6 +69,10 @@ class _$CityCopyWithImpl<$Res, $Val extends City>
           ? _value.rainfall
           : rainfall // ignore: cast_nullable_to_non_nullable
               as int,
+      sensor: null == sensor
+          ? _value.sensor
+          : sensor // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -78,7 +84,7 @@ abstract class _$$CityImplCopyWith<$Res> implements $CityCopyWith<$Res> {
       __$$CityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, int rainfall});
+  $Res call({String id, String name, int rainfall, String sensor});
 }
 
 /// @nodoc
@@ -94,6 +100,7 @@ class __$$CityImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? rainfall = null,
+    Object? sensor = null,
   }) {
     return _then(_$CityImpl(
       id: null == id
@@ -108,6 +115,10 @@ class __$$CityImplCopyWithImpl<$Res>
           ? _value.rainfall
           : rainfall // ignore: cast_nullable_to_non_nullable
               as int,
+      sensor: null == sensor
+          ? _value.sensor
+          : sensor // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -116,7 +127,10 @@ class __$$CityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CityImpl implements _City {
   const _$CityImpl(
-      {required this.id, required this.name, required this.rainfall});
+      {required this.id,
+      required this.name,
+      required this.rainfall,
+      required this.sensor});
 
   factory _$CityImpl.fromJson(Map<String, dynamic> json) =>
       _$$CityImplFromJson(json);
@@ -127,10 +141,12 @@ class _$CityImpl implements _City {
   final String name;
   @override
   final int rainfall;
+  @override
+  final String sensor;
 
   @override
   String toString() {
-    return 'City(id: $id, name: $name, rainfall: $rainfall)';
+    return 'City(id: $id, name: $name, rainfall: $rainfall, sensor: $sensor)';
   }
 
   @override
@@ -141,12 +157,13 @@ class _$CityImpl implements _City {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.rainfall, rainfall) ||
-                other.rainfall == rainfall));
+                other.rainfall == rainfall) &&
+            (identical(other.sensor, sensor) || other.sensor == sensor));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, rainfall);
+  int get hashCode => Object.hash(runtimeType, id, name, rainfall, sensor);
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +183,8 @@ abstract class _City implements City {
   const factory _City(
       {required final String id,
       required final String name,
-      required final int rainfall}) = _$CityImpl;
+      required final int rainfall,
+      required final String sensor}) = _$CityImpl;
 
   factory _City.fromJson(Map<String, dynamic> json) = _$CityImpl.fromJson;
 
@@ -176,6 +194,8 @@ abstract class _City implements City {
   String get name;
   @override
   int get rainfall;
+  @override
+  String get sensor;
   @override
   @JsonKey(ignore: true)
   _$$CityImplCopyWith<_$CityImpl> get copyWith =>

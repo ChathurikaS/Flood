@@ -10,6 +10,7 @@ _$CityImpl _$$CityImplFromJson(Map<String, dynamic> json) => _$CityImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       rainfall: (json['rainfall'] as num).toInt(),
+      sensor: json['sensor'] as String,
     );
 
 Map<String, dynamic> _$$CityImplToJson(_$CityImpl instance) =>
@@ -17,4 +18,5 @@ Map<String, dynamic> _$$CityImplToJson(_$CityImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'rainfall': instance.rainfall,
+      'sensor': instance.sensor,
     };

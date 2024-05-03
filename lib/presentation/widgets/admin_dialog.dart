@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/application/auth/auth_cubit.dart';
 import 'package:flutter_application_1/domain/city/city.dart';
 import 'package:flutter_application_1/presentation/router/app_router.dart';
@@ -38,9 +37,10 @@ class _AdminDialog extends StatelessWidget {
                     label: const Text("Add City")),
                 const Divider(),
                 TextButton.icon(
-                    onPressed: () => context.router.push(CreateCityRoute()),
+                    onPressed: () =>
+                        context.router.push(RegisterSensorRoute(city: city)),
                     icon: const Icon(Icons.sensors_rounded),
-                    label: Text("Register a Sensor to ${city.name}")),
+                    label: Text("Register Sensor to ${city.name}")),
                 const Divider(),
                 TextButton.icon(
                     onPressed: () =>
