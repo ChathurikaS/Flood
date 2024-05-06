@@ -54,8 +54,9 @@ class EditProfilePage extends StatelessWidget {
             ),
             body: BlocBuilder<AuthCubit, AuthState>(
               builder: (context, state) {
-                mUser.value = state.user.getOrElse(
-                  () => User.placeholder(),
+                state.maybeWhen(
+                  user: (user, _) => mUser.value = user,
+                  orElse: () {},
                 );
                 return SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 20),

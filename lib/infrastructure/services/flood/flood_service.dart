@@ -15,14 +15,14 @@ class FloodService {
   }
 
   int _processed(int value) {
-    const sensorMax = 210;
-    const filled = 140;
-    int reversed = 0;
-    if (value > sensorMax) {
-      reversed = 0;
-    } else {
-      reversed = sensorMax - value;
+    int limitedValue = _limitedValue(value);
+    return 140 - limitedValue;
+  }
+
+  int _limitedValue(int value) {
+    if (value > 140) {
+      return 140;
     }
-    return reversed * filled ~/ 100;
+    return value;
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_application_1/domain/admin/admin.dart';
 import 'package:flutter_application_1/domain/city/city.dart';
@@ -23,79 +21,93 @@ class AuthCubit extends Cubit<AuthState> {
   final ICityRepo _cityRepo;
 
   AuthCubit(this._authFacade, this._userRepo, this._cityRepo)
-      : super(const AuthState(
-            isLoading: false,
-            user: None(),
-            admin: None(),
-            city: None(),
-            failure: None()));
+      : super(const AuthState.loading());
 
   Future<void> watch() async {
     _authFacade.watchAuthState().listen((isSignedIn) async {
-      emit(state.copyWith(isLoading: true, failure: const None()));
+      emit(const AuthState.loading());
       if (!isSignedIn) {
         await Future.delayed(const Duration(seconds: 2));
-        emit(state.copyWith(isLoading: false, user: const None()));
+        emit(const AuthState.unauthenticated());
+        return;
       }
-      if (isSignedIn) {
-        final userOption = await _userRepo.getCurrent();
+      final failureOrUser = await _userRepo.getCurrent();
 
-        if (userOption.isLeft()) {
-          emit(state.copyWith(
-              isLoading: false, failure: Some(userOption.getLeft())));
-          return;
-        }
-
-        final failureOrCity = await _cityRepo.get(userOption.getOrCrash().city);
-
-        if (failureOrCity.isLeft()) {
-          emit(state.copyWith(
-              isLoading: false, failure: Some(failureOrCity.getLeft())));
-          return;
-        }
-
-        emit(state.copyWith(
-            isLoading: false,
-            user: Some(userOption.getOrCrash()),
-            city: Some(failureOrCity.getOrCrash())));
-
-        _userRepo.watchCurrent().listen((user) {
-          emit(state.copyWith(user: Some(user)));
-        });
+      if (failureOrUser.isLeft()) {
+        emit(AuthState.failed(failureOrUser.getLeft()));
+        return;
       }
+
+      final failureOrCity =
+          await _getCityForUser(failureOrUser.getOrCrash().city);
+
+      if (failureOrCity.isLeft()) {
+        emit(AuthState.failed(failureOrCity.getLeft()));
+        return;
+      }
+
+      emit(AuthState.user(
+          user: failureOrUser.getOrCrash(), city: failureOrCity.getOrCrash()));
+
+      _userRepo.watchCurrent().listen((user) {
+        emit(AuthState.user(user: user, city: failureOrCity.getOrCrash()));
+      });
     });
   }
 
   Future<void> setAdmin(Admin admin) async {
-    emit(state.copyWith(isLoading: true, failure: const None()));
+    emit(const AuthState.loading());
     final failureOrCities = await _cityRepo.getAll();
-    log(failureOrCities.toString());
 
     if (failureOrCities.isLeft()) {
-      emit(state.copyWith(
-          isLoading: false, failure: Some(failureOrCities.getLeft())));
+      emit(AuthState.failed(failureOrCities.getLeft()));
       return;
     }
     final cities = failureOrCities.getOrCrash();
     if (cities.isEmpty) {
-      emit(state.copyWith(isLoading: false, admin: Some(admin)));
+      emit(AuthState.admin(admin: admin));
       return;
     }
-    emit(state.copyWith(
-        isLoading: false, admin: Some(admin), city: Some(cities.first)));
+    emit(AuthState.admin(admin: admin, city: cities.first));
   }
 
-  Future<void> signOut() async {
-    emit(state.copyWith(isLoading: true, failure: const None()));
+  Future<void> signOutUser() async {
+    emit(const AuthState.loading());
     await _authFacade.signOut();
-    emit(state.copyWith(isLoading: false));
+    emit(const AuthState.unauthenticated());
   }
 
   void signOutAdmin() {
-    emit(state.copyWith(admin: const None(), city: const None()));
+    emit(const AuthState.unauthenticated());
   }
 
   void changeCity(City city) {
-    emit(state.copyWith(city: Some(city)));
+    state.maybeWhen(
+        admin: (admin, _) {
+          emit(AuthState.admin(admin: admin, city: city));
+        },
+        user: (user, _) {
+          emit(AuthState.user(user: user, city: city));
+        },
+        orElse: () {});
+  }
+
+  Future<Either<Failure, City>> _getCityForUser(String cityId) async {
+    if (cityId.isEmpty) {
+      final failureOrCities = await _cityRepo.getAll();
+      if (failureOrCities.isLeft()) {
+        return Left(failureOrCities.getLeft());
+      }
+      final cities = failureOrCities.getOrCrash();
+      if (cities.isEmpty) {
+        return const Left(Failure(message: "No cities found"));
+      }
+      return Right(cities.first);
+    }
+    final failureOrCity = await _cityRepo.get(cityId);
+    if (failureOrCity.isLeft()) {
+      return Left(failureOrCity.getLeft());
+    }
+    return Right(failureOrCity.getOrCrash());
   }
 }

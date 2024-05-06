@@ -16,9 +16,10 @@ class _AdminDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state.admin.isNone()) {
-          context.router.replaceAll([LoginRoute()]);
-        }
+        state.maybeWhen(
+          unauthenticated: () => context.router.replaceAll([LoginRoute()]),
+          orElse: () {},
+        );
       },
       child: Dialog(
         child: Material(

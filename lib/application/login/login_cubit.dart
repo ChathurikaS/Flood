@@ -38,7 +38,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     if (email == Secrets().adminEmail && password == Secrets().adminPassword) {
       await Future.delayed(const Duration(seconds: 1));
-      emit(LoginState.admin(admin: Admin(email: email, city: "")));
+      emit(const LoginState.admin(admin: Admin()));
       return;
     }
 

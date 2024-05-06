@@ -21,6 +21,17 @@ class LoginPage extends StatelessWidget {
   final mEmail = MutableObject<String>("");
   final mPassword = MutableObject<String>("");
 
+  bool _isLoading(BuildContext context) {
+    return context.watch<LoginCubit>().state.maybeWhen(
+              loading: () => true,
+              orElse: () => false,
+            ) ||
+        context.watch<AuthCubit>().state.maybeWhen(
+              loading: () => true,
+              orElse: () => false,
+            );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -29,14 +40,13 @@ class LoginPage extends StatelessWidget {
         listeners: [
           BlocListener<AuthCubit, AuthState>(
             listener: (context, state) {
-              if (state.user.isSome()) {
-                context.router.replaceAll([const HomeRoute()]);
-                return;
-              }
-              if (state.admin.isSome()) {
-                context.router.replaceAll([const AdminHomeRoute()]);
-                return;
-              }
+              state.maybeWhen(
+                user: (user, _) =>
+                    context.router.replaceAll([const HomeRoute()]),
+                admin: (admin, _) =>
+                    context.router.replaceAll([const AdminHomeRoute()]),
+                orElse: () {},
+              );
             },
           ),
           BlocListener<LoginCubit, LoginState>(
@@ -54,10 +64,7 @@ class LoginPage extends StatelessWidget {
         ],
         child: Builder(builder: (context) {
           return LoadablePage(
-            isLoading: context.watch<LoginCubit>().state.maybeWhen(
-                  loading: () => true,
-                  orElse: () => false,
-                ),
+            isLoading: _isLoading(context),
             body: AuthBg(
                 child: SizedBox(
               width: double.infinity,

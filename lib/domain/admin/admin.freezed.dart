@@ -15,20 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$Admin {
-  String get email => throw _privateConstructorUsedError;
-  String get city => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AdminCopyWith<Admin> get copyWith => throw _privateConstructorUsedError;
-}
+mixin _$Admin {}
 
 /// @nodoc
 abstract class $AdminCopyWith<$Res> {
   factory $AdminCopyWith(Admin value, $Res Function(Admin) then) =
       _$AdminCopyWithImpl<$Res, Admin>;
-  @useResult
-  $Res call({String email, String city});
 }
 
 /// @nodoc
@@ -40,34 +32,13 @@ class _$AdminCopyWithImpl<$Res, $Val extends Admin>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? city = null,
-  }) {
-    return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$AdminImplCopyWith<$Res> implements $AdminCopyWith<$Res> {
+abstract class _$$AdminImplCopyWith<$Res> {
   factory _$$AdminImplCopyWith(
           _$AdminImpl value, $Res Function(_$AdminImpl) then) =
       __$$AdminImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String email, String city});
 }
 
 /// @nodoc
@@ -77,70 +48,28 @@ class __$$AdminImplCopyWithImpl<$Res>
   __$$AdminImplCopyWithImpl(
       _$AdminImpl _value, $Res Function(_$AdminImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? city = null,
-  }) {
-    return _then(_$AdminImpl(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$AdminImpl implements _Admin {
-  const _$AdminImpl({required this.email, required this.city});
-
-  @override
-  final String email;
-  @override
-  final String city;
+  const _$AdminImpl();
 
   @override
   String toString() {
-    return 'Admin(email: $email, city: $city)';
+    return 'Admin()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AdminImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.city, city) || other.city == city));
+        (other.runtimeType == runtimeType && other is _$AdminImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, city);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AdminImplCopyWith<_$AdminImpl> get copyWith =>
-      __$$AdminImplCopyWithImpl<_$AdminImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 }
 
 abstract class _Admin implements Admin {
-  const factory _Admin(
-      {required final String email, required final String city}) = _$AdminImpl;
-
-  @override
-  String get email;
-  @override
-  String get city;
-  @override
-  @JsonKey(ignore: true)
-  _$$AdminImplCopyWith<_$AdminImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Admin() = _$AdminImpl;
 }

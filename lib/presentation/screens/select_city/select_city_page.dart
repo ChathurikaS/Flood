@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/application/auth/auth_cubit.dart';
 import 'package:flutter_application_1/application/cities/cities_cubit.dart';
 import 'package:flutter_application_1/application/select_city/select_city_cubit.dart';
-import 'package:flutter_application_1/core/extensions/dartz_x.dart';
 import 'package:flutter_application_1/domain/city/city.dart';
 import 'package:flutter_application_1/injection.dart';
 import 'package:flutter_application_1/presentation/core/theme.dart';
@@ -25,57 +24,96 @@ class SelectCityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<CitiesCubit>()..load(),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          centerTitle: true,
-          title: const TextMedium(
-            "Select City",
-            color: Colors.white,
-            bold: true,
-          ),
-          actions: [
-            if (isTemp)
-              IconButton(
-                onPressed: () => context.router.maybePop(),
-                icon: const Icon(
-                  Icons.close_rounded,
-                  color: Colors.white,
-                ),
-              ),
-            if (!isTemp)
-              TextButton(
-                onPressed: () {
-                  final user = context
-                      .read<AuthCubit>()
-                      .state
-                      .user
-                      .fold(() => null, (a) => a);
-                  if (user == null) {
-                    return;
-                  }
-                  context.read<SelectCityCubit>().updateCityWithUser(user);
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SelectCityCubit>(
+            create: (context) => getIt<SelectCityCubit>()),
+        BlocProvider<CitiesCubit>(
+            create: (context) => getIt<CitiesCubit>()..load()),
+      ],
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<SelectCityCubit, SelectCityState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                failed: (failure) {
+                  showFailedSnackbar(
+                      context: context, message: failure.message);
                 },
-                child: const TextRegular(
-                  "Done",
-                  color: Colors.white,
-                ),
-              )
-          ],
-        ),
-        body: BlocBuilder<CitiesCubit, CitiesState>(
-          builder: (context, state) {
-            return state.maybeWhen(
-                loading: () => const Center(child: CircularProgressIndicator()),
-                loaded: (cities) => _LoadedView(
-                    cities: cities,
-                    onSucceed: () =>
-                        context.router.replaceAll([const HomeRoute()])),
-                orElse: () => const SizedBox());
-          },
-        ),
+                succeed: () {
+                  context.router.replaceAll([const HomeRoute()]);
+                },
+                orElse: () {},
+              );
+            },
+          ),
+          BlocListener<CitiesCubit, CitiesState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                failed: (failure) {
+                  showFailedSnackbar(
+                      context: context, message: failure.message);
+                },
+                orElse: () {},
+              );
+            },
+          ),
+        ],
+        child: Builder(builder: (context) {
+          return LoadablePage(
+            isLoading: context
+                .watch<SelectCityCubit>()
+                .state
+                .maybeWhen(loading: () => true, orElse: () => false),
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              centerTitle: true,
+              title: const TextMedium(
+                "Select City",
+                color: Colors.white,
+                bold: true,
+              ),
+              actions: [
+                if (isTemp)
+                  IconButton(
+                    onPressed: () => context.router.maybePop(),
+                    icon: const Icon(
+                      Icons.close_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
+                if (!isTemp)
+                  BlocBuilder<AuthCubit, AuthState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        user: (user, _) => TextButton(
+                          onPressed: () => context
+                              .read<SelectCityCubit>()
+                              .updateCityWithUser(user),
+                          child: const TextRegular(
+                            "Done",
+                            color: Colors.white,
+                          ),
+                        ),
+                        orElse: () => const SizedBox(),
+                      );
+                    },
+                  )
+              ],
+            ),
+            body: BlocBuilder<CitiesCubit, CitiesState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                    loading: () =>
+                        const Center(child: CircularProgressIndicator()),
+                    loaded: (cities) => _LoadedView(
+                          cities: cities,
+                        ),
+                    orElse: () => const SizedBox());
+              },
+            ),
+          );
+        }),
       ),
     );
   }
@@ -83,52 +121,28 @@ class SelectCityPage extends StatelessWidget {
 
 class _LoadedView extends StatelessWidget {
   final List<City> cities;
-  final Function() onSucceed;
 
-  const _LoadedView({required this.cities, required this.onSucceed});
+  const _LoadedView({required this.cities});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return BlocProvider(
-      create: (context) => getIt<SelectCityCubit>(),
-      child: BlocListener<SelectCityCubit, SelectCityState>(
-        listener: (context, state) {
-          state.maybeWhen(
-            failed: (failure) {
-              showFailedSnackbar(context: context, message: failure.message);
-              return;
-            },
-            succeed: onSucceed,
-            orElse: () {},
-          );
-        },
-        child: Builder(builder: (context) {
-          return LoadablePage(
-            isLoading: context.watch<SelectCityCubit>().state.maybeWhen(
-                  loading: () => true,
-                  orElse: () => false,
+    return BlocBuilder<CitiesCubit, CitiesState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+            loaded: (cities) => Container(
+                  color: theme.backgroundLight,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    itemCount: cities.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _CityCard(
+                          city: cities[index], isFirst: index == 0);
+                    },
+                  ),
                 ),
-            body: Container(
-              color: theme.backgroundLight,
-              child: BlocBuilder<CitiesCubit, CitiesState>(
-                builder: (context, state) {
-                  return state.maybeWhen(
-                      loaded: (cities) => ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            itemCount: cities.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return _CityCard(
-                                  city: cities[index], isFirst: index == 0);
-                            },
-                          ),
-                      orElse: () => const SizedBox());
-                },
-              ),
-            ),
-          );
-        }),
-      ),
+            orElse: () => const SizedBox());
+      },
     );
   }
 }
@@ -161,7 +175,21 @@ class _CityCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             child: Row(
               children: [
-                _CheckBox(city: city),
+                BlocBuilder<AuthCubit, AuthState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      user: (_, userCity) =>
+                          _CheckBox(isSelected: userCity.id == city.id),
+                      admin: (_, adminCity) {
+                        if (adminCity == null) {
+                          return const _CheckBox(isSelected: false);
+                        }
+                        return _CheckBox(isSelected: adminCity.id == city.id);
+                      },
+                      orElse: () => const _CheckBox(isSelected: false),
+                    );
+                  },
+                ),
                 const HGap(gap: 20),
                 TextMedium(
                   city.name,
@@ -178,32 +206,16 @@ class _CityCard extends StatelessWidget {
 }
 
 class _CheckBox extends StatelessWidget {
-  final City city;
+  final bool isSelected;
 
-  const _CheckBox({required this.city});
+  const _CheckBox({required this.isSelected});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
-      builder: (context, state) {
-        if (state.city.isNone()) {
-          return Image.asset(
-            "assets/icons/system/unchecked.png",
-            width: 32,
-            height: 32,
-          );
-        }
-
-        bool isSelected = false;
-        if (state.city.getOrCrash().id == city.id) {
-          isSelected = true;
-        }
-        return Image.asset(
-          "assets/icons/system/${isSelected ? "checked" : "unchecked"}.png",
-          width: 32,
-          height: 32,
-        );
-      },
+    return Image.asset(
+      "assets/icons/system/${isSelected ? "checked" : "unchecked"}.png",
+      width: 32,
+      height: 32,
     );
   }
 }

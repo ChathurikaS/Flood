@@ -31,10 +31,11 @@ class RegisterPage extends StatelessWidget {
         listeners: [
           BlocListener<AuthCubit, AuthState>(
             listener: (context, state) {
-              if (state.user.isSome()) {
-                context.router.replaceAll([SelectCityRoute(isTemp: false)]);
-                return;
-              }
+              state.maybeWhen(
+                user: (user, _) =>
+                    context.router.replaceAll([SelectCityRoute(isTemp: false)]),
+                orElse: () {},
+              );
             },
           ),
           BlocListener<RegisterCubit, RegisterState>(
@@ -111,6 +112,16 @@ class RegisterPage extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: BoxButton(
+                              text: "Log In",
+                              isSecondary: true,
+                              onPressed: () =>
+                                  context.router.replaceAll([LoginRoute()]),
+                            ),
+                          ),
+                          const HGap(gap: 20),
+                          Expanded(
+                            flex: 1,
+                            child: BoxButton(
                               text: "Sign Up",
                               isSecondary: true,
                               onPressed: () => context
@@ -119,16 +130,6 @@ class RegisterPage extends StatelessWidget {
                                       user: mUser.value,
                                       password: mPassword.value,
                                       confirmPassword: mConfirmPassword.value),
-                            ),
-                          ),
-                          const HGap(gap: 20),
-                          Expanded(
-                            flex: 1,
-                            child: BoxButton(
-                              text: "Log In",
-                              isSecondary: true,
-                              onPressed: () =>
-                                  context.router.replaceAll([LoginRoute()]),
                             ),
                           ),
                           const HGap(gap: 20),

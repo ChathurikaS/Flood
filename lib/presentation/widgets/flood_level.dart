@@ -1,34 +1,50 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_application_1/application/flood_level/flood_level_cubit.dart';
 import 'package:flutter_application_1/domain/city/city.dart';
 import 'package:flutter_application_1/injection.dart';
 import 'package:flutter_application_1/presentation/widgets/space.dart';
 import 'package:flutter_application_1/presentation/widgets/text.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+class StatusUtil {
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final String status;
+  StatusUtil({
+    required this.backgroundColor,
+    required this.foregroundColor,
+    required this.status,
+  });
+}
 
 class FloodLevel extends StatelessWidget {
   final City city;
 
   const FloodLevel({super.key, required this.city});
 
-  (Color, Color) _getColors(int state) {
-    if (state < 50) {
-      return (const Color(0xFF1BC8D3), const Color(0xFFBFFBFF));
-    } else if (state < 80) {
-      return (const Color(0xFFBCBE5B), const Color(0xFFF8FA9E));
-    } else {
-      return (const Color(0xFFCF765A), const Color(0xFFFFC3B0));
+  StatusUtil _getStatusUtil(int state) {
+    if (state >= 110) {
+      return StatusUtil(
+        backgroundColor: const Color(0xFFCF765A),
+        foregroundColor: const Color(0xFFFFC3B0),
+        status: "Danger",
+      );
     }
-  }
 
-  String _getText(int state) {
-    if (state < 50) {
-      return "Normal";
-    } else if (state < 100) {
-      return "Warning";
-    } else {
-      return "Danger";
+    if (state <= 65) {
+      return StatusUtil(
+        backgroundColor: const Color(0xFF1BC8D3),
+        foregroundColor: const Color(0xFFBFFBFF),
+        status: "Normal",
+      );
     }
+    return StatusUtil(
+      backgroundColor: const Color(0xFFBCBE5B),
+      foregroundColor: const Color(0xFFF8FA9E),
+      status: "Warning",
+    );
   }
 
   @override
@@ -50,7 +66,7 @@ class FloodLevel extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                color: _getColors(state).$1,
+                color: _getStatusUtil(state).backgroundColor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -79,7 +95,8 @@ class FloodLevel extends StatelessWidget {
                                               width: 140,
                                               height: state.toDouble(),
                                               decoration: BoxDecoration(
-                                                color: _getColors(state).$1,
+                                                color: _getStatusUtil(state)
+                                                    .foregroundColor,
                                               ),
                                             );
                                           },
@@ -90,7 +107,8 @@ class FloodLevel extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         border: Border.all(
-                                            color: _getColors(state).$2,
+                                            color: _getStatusUtil(state)
+                                                .foregroundColor,
                                             width: 10),
                                       ),
                                     )
@@ -105,9 +123,9 @@ class FloodLevel extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               TextLarge(
-                                _getText(state),
+                                _getStatusUtil(state).status,
                                 bold: true,
-                                color: _getColors(state).$2,
+                                color: _getStatusUtil(state).foregroundColor,
                               ),
                               const VGap(gap: 10),
                               TextRegular("Water level increased by: $state cm",

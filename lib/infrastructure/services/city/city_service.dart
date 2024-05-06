@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_application_1/domain/city/city.dart';
@@ -33,7 +31,6 @@ class CityService {
           .toList();
       return Right(cities);
     } catch (e) {
-      log(e.toString());
       return const Left(Failure(message: "Failed to load cities"));
     }
   }
