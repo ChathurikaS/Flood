@@ -25,7 +25,7 @@ class FloodLevel extends StatelessWidget {
   const FloodLevel({super.key, required this.city});
 
   StatusUtil _getStatusUtil(int state) {
-    if (state >= 110) {
+    if (state >= 95) {
       return StatusUtil(
         backgroundColor: const Color(0xFFCF765A),
         foregroundColor: const Color(0xFFFFC3B0),
@@ -33,7 +33,7 @@ class FloodLevel extends StatelessWidget {
       );
     }
 
-    if (state <= 65) {
+    if (state <= 60) {
       return StatusUtil(
         backgroundColor: const Color(0xFF1BC8D3),
         foregroundColor: const Color(0xFFBFFBFF),

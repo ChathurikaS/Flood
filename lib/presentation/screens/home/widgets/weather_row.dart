@@ -7,18 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/application/weather/weather_cubit.dart';
 import 'package:flutter_application_1/domain/weather/weather.dart';
 import 'package:flutter_application_1/presentation/screens/home/widgets/measurement_card.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-class WeatherRow extends HookWidget {
-  final City city;
-
-  const WeatherRow({super.key, required this.city});
+class WeatherRow extends StatelessWidget {
+  const WeatherRow({super.key});
 
   @override
   Widget build(BuildContext context) {
-    useEffect(
-        () => () => context.read<WatchCityCubit>().watch(city.id), [city]);
-
     return BlocBuilder<WeatherCubit, WeatherState>(
       builder: (context, state) {
         return state.maybeWhen(

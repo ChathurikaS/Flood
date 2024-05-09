@@ -33,24 +33,34 @@ class _AdminDialog extends StatelessWidget {
                 const TextRegular("Admin Actions", bold: true),
                 const VGap(gap: 20),
                 TextButton.icon(
-                    onPressed: () => context.router.push(CreateCityRoute()),
+                    onPressed: () {
+                      context.router.maybePop();
+                      context.router.push(CreateCityRoute());
+                    },
                     icon: const Icon(Icons.location_city_rounded),
                     label: const Text("Add City")),
                 const Divider(),
                 TextButton.icon(
-                    onPressed: () =>
-                        context.router.push(RegisterSensorRoute(city: city)),
+                    onPressed: () {
+                      context.router.maybePop();
+                      context.router.push(RegisterSensorRoute(city: city));
+                    },
                     icon: const Icon(Icons.sensors_rounded),
                     label: Text("Register Sensor to ${city.name}")),
                 const Divider(),
                 TextButton.icon(
-                    onPressed: () =>
-                        context.router.push(UpdateRainfallRoute(city: city)),
+                    onPressed: () {
+                      context.router.maybePop();
+                      context.router.push(UpdateRainfallRoute(city: city));
+                    },
                     icon: const Icon(Icons.cloudy_snowing),
                     label: Text("Update Rainfall in ${city.name}")),
                 const Divider(),
                 TextButton.icon(
-                    onPressed: () => context.read<AuthCubit>().signOutAdmin(),
+                    onPressed: () {
+                      context.router.maybePop();
+                      context.read<AuthCubit>().signOutAdmin();
+                    },
                     icon: const Icon(Icons.logout_rounded),
                     label: const Text("Log Out")),
               ],

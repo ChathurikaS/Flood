@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/application/watch_city/watch_city_cubit.dart';
@@ -27,19 +25,25 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
-      backgroundColor: theme.backgroundLight,
-      body: SafeArea(
-        child: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) {
-            return state.maybeWhen(
-                user: (user, city) => BlocProvider(
-                      create: (context) =>
-                          getIt<WeatherCubit>()..loadWeather(city.name),
-                      child: _View(city: city),
-                    ),
-                orElse: () => const SizedBox());
-          },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => getIt<WeatherCubit>()),
+        BlocProvider(create: (context) => getIt<WatchCityCubit>()),
+      ],
+      child: Scaffold(
+        backgroundColor: theme.backgroundLight,
+        body: SafeArea(
+          child: BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                  user: (user, city) {
+                    context.read<WatchCityCubit>().watch(city.id);
+                    context.read<WeatherCubit>().loadWeather(city.name);
+                    return _View(city: city);
+                  },
+                  orElse: () => const SizedBox());
+            },
+          ),
         ),
       ),
     );
@@ -52,10 +56,6 @@ class _View extends HookWidget {
   const _View({required this.city});
   @override
   Widget build(BuildContext context) {
-    log(city.name);
-    useEffect(() => () => context.read<WeatherCubit>().loadWeather(city.name),
-        [city]);
-
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,12 +113,9 @@ class _View extends HookWidget {
           const VGap(gap: 30),
           FloodLevel(city: city),
           const VGap(gap: 30),
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: BlocProvider(
-                create: (context) => getIt<WatchCityCubit>()..watch(city.id),
-                child: WeatherRow(city: city),
-              )),
+          const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: WeatherRow()),
           const VGap(gap: 20),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
