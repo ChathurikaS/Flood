@@ -10,6 +10,7 @@ class CityRepo implements ICityRepo {
   final CityService _cityService;
 
   CityRepo(this._cityService);
+
   @override
   Future<Either<Failure, None>> create(String name) =>
       _cityService.create(name);

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/application/auth/auth_cubit.dart';
+import 'package:flutter_application_1/application/watch_city/watch_city_cubit.dart';
 import 'package:flutter_application_1/application/weather/weather_cubit.dart';
 import 'package:flutter_application_1/injection.dart';
 import 'package:flutter_application_1/presentation/core/theme.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_application_1/presentation/screens/home/widgets/forecast
 import 'package:flutter_application_1/presentation/screens/home/widgets/weather_row.dart';
 import 'package:flutter_application_1/presentation/screens/home/widgets/wether_card.dart';
 import 'package:flutter_application_1/presentation/widgets/admin_dialog.dart';
+import 'package:flutter_application_1/presentation/widgets/date.dart';
 import 'package:flutter_application_1/presentation/widgets/flood_level.dart';
 import 'package:flutter_application_1/presentation/widgets/space.dart';
 import 'package:flutter_application_1/presentation/widgets/text.dart';
@@ -111,10 +113,7 @@ class AdminHomePage extends StatelessWidget {
                                   bold: true,
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                child: TextMedium("Friday, 9 February"),
-                              ),
+                              const DateView(),
                               const VGap(gap: 20),
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20),
@@ -126,7 +125,11 @@ class AdminHomePage extends StatelessWidget {
                               Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
-                                  child: WeatherRow(city: city)),
+                                  child: BlocProvider(
+                                    create: (context) =>
+                                        getIt<WatchCityCubit>()..watch(city.id),
+                                    child: WeatherRow(city: city),
+                                  )),
                               const VGap(gap: 20),
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20),

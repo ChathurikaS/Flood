@@ -6,6 +6,7 @@ import 'package:flutter_application_1/application/watch_city/watch_city_cubit.da
 import 'package:flutter_application_1/application/weather/weather_cubit.dart';
 import 'package:flutter_application_1/domain/city/city.dart';
 import 'package:flutter_application_1/injection.dart';
+import 'package:flutter_application_1/presentation/widgets/date.dart';
 import 'package:flutter_application_1/presentation/widgets/flood_level.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/application/auth/auth_cubit.dart';
@@ -103,10 +104,7 @@ class _View extends HookWidget {
               bold: true,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: TextMedium("Friday, 9 February"),
-          ),
+          const DateView(),
           const VGap(gap: 20),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
